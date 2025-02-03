@@ -1,0 +1,21 @@
+.navbar {
+    position: sticky;
+    background-color: #9d5dd8 !important;
+    padding: 0%;
+  
+}
+.nav-link:hover {
+    background-color: white; /* Change this to your preferred color */
+    color: black; /* Optional: Change text color for better visibility */
+    border-radius: 1px; 
+
+}
+.nav-link{
+    padding: 15px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+.btn{
+    color: white;
+}
+
