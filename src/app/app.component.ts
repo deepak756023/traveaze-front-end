@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
+import {CountCitiesService} from './services/count-cities.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  standalone: false,
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'traveaze-portal';
+  title = 'traveaze_portal';
+  cityCount: any;
+  constructor(private cityData:CountCitiesService){
+    cityData.cities().subscribe((data) => {
+      console.log("data", data);
+      this.cityCount = data;
+    });
+    
+  }
 }
