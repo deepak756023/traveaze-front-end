@@ -1,54 +1,63 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="">
-      <img class="container-fluid" [src]="'assets/images/logo.png'" alt="" style="width: 65px; height: 40px;" />
+      <img [src]="'assets/images/logo.png'" alt="Logo" style="width: 65px; height: 40px;" />
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Navbar Toggle Button (Corrected data-bs-target) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="d-flex flex-row collapse navbar-collapse" id="navbarSupportedContent">
+
+    <!-- Navbar Content (Fixed ID) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
+        
+        <!-- Places Dropdown -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="placesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Places
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu" aria-labelledby="placesDropdown">
             <li><a class="dropdown-item" href="#">Show</a></li>
             <li><a class="dropdown-item" href="#">Edit Place</a></li>
             <li><a class="dropdown-item" href="#">Add Place</a></li>
           </ul>
         </li>
+
+        <!-- Hotels Dropdown -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="hotelsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Hotels
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu" aria-labelledby="hotelsDropdown">
             <li><a class="dropdown-item" href="#">Show</a></li>
             <li><a class="dropdown-item" href="#">Edit Hotel</a></li>
             <li><a class="dropdown-item" href="#">Add Hotel</a></li>
           </ul>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="#">Sign-in</a>
         </li>
+
+        <!-- User Dropdown -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             User
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu" aria-labelledby="userDropdown">
             <li><a class="dropdown-item" href="#">Your Profile</a></li>
             <li><a class="dropdown-item" href="#">Edit Profile</a></li>
             <li><a class="dropdown-item" href="#">LogOut</a></li>
           </ul>
         </li>
       </ul>
+
+      <!-- Search Form -->
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success bg-success" type="submit">Search</button>

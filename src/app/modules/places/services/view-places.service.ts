@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CountCitiesService {
-  url = "http://localhost:8080/count-details";
+export class ViewPlacesService {
+  url = "http://localhost:8080/famous_places";
+
   constructor(private http:HttpClient) { }
-  cities(){
+  
+  places(){
     return this.http.get(this.url);
   }
 }

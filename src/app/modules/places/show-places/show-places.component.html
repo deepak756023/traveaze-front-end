@@ -1,0 +1,49 @@
+<div class="container-fluid full-height d-flex flex-column">
+  <div class="row flex-grow-1">
+    <!-- Left Section (2 Columns) -->
+    <div class="col-2 d-flex flex-column border">
+      <div class="row">
+        <div>
+          <input id="myInput" (keyup)="filterList()" type="text" placeholder="State Search..." />
+
+          <!-- Scrollable List Container -->
+          <div class="scrollable-container">
+            <ul id="myUL">
+              <li><a href="#">Item 1</a></li>
+              <li><a href="#">Item 2</a></li>
+              <li><a href="#">Item 3</a></li>
+              <li><a href="#">Item 4</a></li>
+              <li><a href="#">Item 5</a></li>
+              <li><a href="#">Item 6</a></li>
+              <li><a href="#">Item 7</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <input id="myInput" (keyup)="filterList()" type="text" placeholder="City Search..." />
+
+          <!-- Scrollable List Container -->
+          <div class="scrollable-container">
+            <ul id="myUL">
+              <li><a href="#">Item 1</a></li>
+              <li><a href="#">Item 2</a></li>
+              <li><a href="#">Item 3</a></li>
+              <li><a href="#">Item 4</a></li>
+              <li><a href="#">Item 5</a></li>
+              <li><a href="#">Item 6</a></li>
+              <li><a href="#">Item 7</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Right Section (10 Columns) -->
+    <div class="col-10 d-flex flex-column border">
+     <app-logo-list></app-logo-list>
+    </div>
+  </div>
+</div>
