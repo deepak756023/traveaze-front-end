@@ -10,7 +10,22 @@ import { ViewPlacesService } from '../services/view-places.service';
 })
 
 export class ShowPlacesComponent {
-  
+
+  item: any;
+  cities: any;
+
+
+
+  states: string[] = ['Odisha', 'Bihar', 'Jharkhand', 'WestBengal', 'AndraPradesh', 'Gujurat', 'Rajasthan'];
+
+  constructor(private place: ViewPlacesService) { }
+
+  onItemClick(item: string): void {
+    this.place.citiesByState(item).subscribe((response) => {
+      this.cities = response;
+    });
+  }
+
 
   public filterList(): void {
 
@@ -35,5 +50,6 @@ export class ShowPlacesComponent {
 
   }
 
-}
 
+
+}
