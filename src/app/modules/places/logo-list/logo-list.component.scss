@@ -1,8 +1,8 @@
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding: 5px;
+    gap: 7px;
+    padding-top: 6px;
     
 }
 .card-body{
@@ -19,5 +19,5 @@
 
 }
 .card-text{
-    height: 50px;
+    height: 40px;
 }
