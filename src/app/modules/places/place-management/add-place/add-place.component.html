@@ -1,0 +1,79 @@
+<p>add-place works!</p>
+
+<body class="bg-light">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="container mt-5">
+                <div class="card shadow p-4">
+                    <h3 class="text-center">Add Place</h3>
+                    <form id="placeForm" novalidate>
+                        <!-- Title Field -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                            <div class="invalid-feedback">Please enter a title.</div>
+                        </div>
+
+                        <!-- City Dropdown (Searchable & Sorted) -->
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <select class="form-select" id="city" name="city" required>
+                                <option value="" selected disabled>Select a city</option>
+                                <option value="Chicago">Chicago</option>
+                                <option value="Dallas">Dallas</option>
+                                <option value="Houston">Houston</option>
+                                <option value="Los Angeles">Los Angeles</option>
+                                <option value="Miami">Miami</option>
+                                <option value="New York">New York</option>
+                                <option value="San Francisco">San Francisco</option>
+                                <option value="Seattle">Seattle</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a city.</div>
+                        </div>
+
+                        <!-- Address Field -->
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" name="address" required>
+                            <div class="invalid-feedback">Please enter an address.</div>
+                        </div>
+
+                        <!-- Message Field -->
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                            <div class="invalid-feedback">Please enter a message.</div>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Image</label>
+                            <input type="text" class="form-control" id="address" name="address" required>
+                            <div class="invalid-feedback">Please enter image(as a string).</div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="container mt-5">
+                <div class="card">
+                    <img src="assets/images/nandankanan.png" class="card-img-top h-2" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Title</h5>
+                        <p class="card-text">History</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">city</li>
+                        <li class="list-group-item">Address</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
