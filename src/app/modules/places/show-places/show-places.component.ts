@@ -21,6 +21,7 @@ export class ShowPlacesComponent {
   constructor(private place: ViewPlacesService) { }
 
   onItemClick(item: string): void {
+    console.log(item);
     this.place.citiesByState(item).subscribe((response) => {
       this.cities = response;
     });

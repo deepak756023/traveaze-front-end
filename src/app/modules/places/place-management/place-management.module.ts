@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AllPlacesComponent } from './all-places/all-places.component';
 import { AddPlaceComponent } from './add-place/add-place.component';
 import { UpdatePlaceComponent } from './update-place/update-place.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { UpdatePlaceComponent } from './update-place/update-place.component';
     UpdatePlaceComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
       AddPlaceComponent
