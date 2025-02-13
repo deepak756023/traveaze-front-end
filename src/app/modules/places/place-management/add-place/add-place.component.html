@@ -14,34 +14,34 @@
                         <div ngModelGroup="cityDetails" #cityDetails="ngModelGroup">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <!-- state Dropdown (Searchable & Sorted) -->
+                                    <!-- State Dropdown (Searchable & Sorted) -->
                                     <div class="mb-3">
                                         <label for="state" class="form-label">State</label>
-                                        <select ngModel name="state" #state="ngModel" class="form-select" id="city"
-                                            required >
-                                            <option value="" selected disabled >Select a state</option>
-                                            <option *ngFor="let state of states"><a href="#" (click)="onItemClick(state)">{{state}}</a></option>
-                                            
+                                        <select [(ngModel)]="selectedState" name="state" #state="ngModel"
+                                            class="form-select" id="state" required
+                                            (change)="onStateClick(selectedState)">
+                                            <option value="" selected disabled>Select a state</option>
+                                            <option *ngFor="let state of states" [value]="state">{{ state }}</option>
                                         </select>
-                                        <div class="alert alert-danger" *ngIf="state.touched && !state.valid">Please
-                                            select
-                                            a state.</div>
+                                        <div class="alert alert-danger" *ngIf="state.touched && !state.valid">
+                                            Please select a state.
+                                        </div>
                                     </div>
+
                                 </div>
 
                                 <div class="col-md-6">
                                     <!-- City Dropdown (Searchable & Sorted) -->
                                     <div class="mb-3">
                                         <label for="city" class="form-label">City</label>
-                                        <select required ngModel name="city" #city="ngModel" class="form-select"
-                                            id="city">
+                                        <select [(ngModel)]="selectedCity" name="city" #city="ngModel"
+                                            class="form-select" id="city" required
+                                            (click)="onCityClick(selectedCity)">
                                             <option value="" selected disabled>Select a city</option>
-                                            <option  *ngFor="let city of cities"><a href="#" (click)="onItemClick(city); $event.preventDefault();">{{city}}</a></option>
-                                            <!-- <option value="Bhadrak" (click)="getCityDetails(Bhadrak)">Bhadrak</option>
-                                            <option value="Bhubaneswar" (click)="getCityDetails(B)">Bhubaneswar</option> -->
+                                            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
                                         </select>
                                         <div class="alert alert-danger" *ngIf="city.touched && !city.valid">
-                                            Please select a city.
+                                            Please select a state.
                                         </div>
                                     </div>
                                 </div>
@@ -54,8 +54,8 @@
                         <!-- Title Field -->
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
-                            <input ngModel name="title" #title="ngModel" type="text"
-                                class="form-control" id="title" required>
+                            <input ngModel name="title" #title="ngModel" type="text" class="form-control" id="title"
+                                required>
                             <div class="alert alert-danger" *ngIf="title.touched && !title.valid">Please enter a title.
                             </div>
                         </div>
@@ -96,7 +96,7 @@
 
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary w-100" >Submit</button>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
 
 
                     </form>
