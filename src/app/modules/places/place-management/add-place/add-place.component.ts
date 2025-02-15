@@ -12,6 +12,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class AddPlaceComponent {
 
+
   private url = "http://localhost:8080/add-place";
   private urlForAllCity = "http://localhost:8080/cities_name";
   private urlForCity = "http://localhost:8080/city";
@@ -22,6 +23,7 @@ export class AddPlaceComponent {
   selectedState: string = '';
   selectedCity: string = '';
   cityName: string = '';
+
 
 
 
