@@ -18,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   exports: [
-      AddPlaceComponent
+      AddPlaceComponent,
+      AllPlacesComponent
     ]
 })
 export class PlaceManagementModule { }
