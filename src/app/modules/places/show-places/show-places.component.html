@@ -20,7 +20,7 @@
           <input id="myInput" (keyup)="filterList()" type="text" placeholder="City Search..." />
 
           <!-- Scrollable List Container -->
-          <div class="scrollable-container" >
+          <div class="scrollable-container">
             <ul id="myUL" *ngFor="let city of cities">
               <li><a href="#">{{city}}</a></li>
               <!-- <li><a href="#">Item 2</a></li>
@@ -38,11 +38,17 @@
 
     <!-- Right Section (10 Columns) -->
     <div class="col-10 d-flex flex-column border">
-     <app-logo-list></app-logo-list>
+      <app-logo-list></app-logo-list>
     </div>
   </div>
 </div>
 
-<add-place></add-place>
+<div class="mt-5">
+  <add-place></add-place>
+</div>
+
+<div>
+  <app-all-places></app-all-places>
+</div>
 
 <!-- <app-logo-details></app-logo-details> -->
