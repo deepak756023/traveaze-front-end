@@ -1,6 +1,10 @@
 
-:host ::ng-deep .p-dialog .product-image {
-    width: 150px;
-    margin: 0 auto 2rem auto;
-    display: block;
-}
+/* app.component.css */
+th {
+    cursor: pointer;
+  }
+  
+  th i {
+    margin-left: 5px;
+  }
+  
