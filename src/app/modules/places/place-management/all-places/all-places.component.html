@@ -1,24 +1,74 @@
-<!-- app.component.html -->
-<div class="container mt-5">
-    <h2>Bootstrap Table with Edit and Delete Icons</h2>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th (click)="sortTable('name')">Name <i class="fa" [ngClass]="sortOrder === 'name' ? (ascending ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort'"></i></th>
-          <th (click)="sortTable('age')">Age <i class="fa" [ngClass]="sortOrder === 'age' ? (ascending ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort'"></i></th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of sortedUsers">
-          <td>{{ user.name }}</td>
-          <td>{{ user.age }}</td>
-          <td>
-            <button class="btn btn-primary btn-sm" (click)="editUser(user)"><i class="fa fa-edit"></i> Edit</button>
-            <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)"><i class="fa fa-trash"></i> Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+<div class="container-fluid vh-100 d-flex flex-column mt-5 ">
+  <h2>Bootstrap Table with Edit and Delete Icons</h2>
+  <table class="table table-bordered w-100">
+
+
+    <thead>
+      <tr>
+        <th (click)="sortTable('name')">Name <i class="fa"
+            [ngClass]="sortOrder === 'name' ? (ascending ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort'"></i></th>
+        <th>history</th>
+        <th>image</th>
+        <th>location</th>
+        <th>city</th>
+        <th>state</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+
+
+
+    <tbody>
+      <tr *ngFor="let place of sortedPlaces">
+        <td>{{ place.name }}</td>
+        <td>{{ place.history }}</td>
+        <td>{{ place.image }}</td>
+        <td>{{ place.location}}</td>
+        <td>{{ place.city.name }}</td>
+        <td>{{ place.city.state }}</td>
+        <td>
+          <div>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-trash"></i>
+                  Delete</button>
+              </div>
+
+              <!-- The Modal -->
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">For Confirmation</h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                     Do you really want to delete the place...
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Back</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteUser(place.name)">Delete</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
