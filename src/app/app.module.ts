@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PlacesModule } from './modules/places/places.module';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

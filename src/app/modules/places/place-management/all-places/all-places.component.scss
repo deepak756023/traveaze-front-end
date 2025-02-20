@@ -1,10 +1,22 @@
 
-/* app.component.css */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center; /* Centers text inside table cells */
+}
+
 th {
-    cursor: pointer;
-  }
-  
-  th i {
-    margin-left: 5px;
-  }
+  text-align: center; /* Centers text inside headers */
+  vertical-align: middle; /* Ensures text stays vertically centered */
+  padding: 10px; /* Adds some spacing for better appearance */
+  background-color: #f8f9fa; /* Light gray background */
+  cursor: pointer;
+}
+
+th i {
+  margin-left: 5px; /* Adds spacing between text and sort icon */
+}
+
+
+
   
