@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ViewPlacesService } from '../../services/view-places.service';
+import { NgForm } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-all-places',
@@ -10,18 +12,26 @@ import { ViewPlacesService } from '../../services/view-places.service';
 })
 export class AllPlacesComponent {
 
-  
+
+
   url = "http://localhost:8080/famous_places";
   deleteURL = "http://localhost:8080/place";
+  updateURL = "http://localhost:8080/place";
+  cityURL = "http://localhost:8080/city";
+  postURL = "http://localhost:8080/add-place";
+
   places: any[] = [];  // Initialize as an empty array
-  sortedPlaces: any[] = [];  
+  sortedPlaces: any[] = [];
   sortOrder: string = '';
   ascending: boolean = true;
+  famousPlace: any = {};
+  cityName: String = '';
+  success: String = '';
 
   constructor(private place: ViewPlacesService, private http: HttpClient) {
     this.fetchPlaces();
   }
-  
+
 
   fetchPlaces() {
     this.http.get<any[]>(this.url).subscribe((response) => {
@@ -33,7 +43,7 @@ export class AllPlacesComponent {
 
 
 
-  
+
   sortTable(column: string) {
     if (!this.places.length) return; // Ensure data exists before sorting
 
@@ -58,21 +68,78 @@ export class AllPlacesComponent {
     });
   }
 
+
+
+  fetchPlace(name: String) {
+
+    this.http.get(`${this.updateURL}?name=${name}`).subscribe(
+      response => {
+
+        // this.famousPlace = { ...response };
+        this.famousPlace = response;
+        this.cityName = this.famousPlace.city.name;
+
+
+        console.log(this.cityName);
+
+      },
+      error => {
+        console.error("Error deleting user:", error);
+      }
+    );
+
+  }
+
   
+
+  async updatePlace(form: NgForm) {
+     let formData = form.value;
+     console.log(this.cityName);
+        const cityData = await firstValueFrom(this.http.get(`${this.cityURL}?name=${this.cityName}`));
+        console.log(cityData);
+    
+        const place = {
+          name: formData.title,
+          image: formData.image,
+          location: formData.location,
+          history: formData.message,
+          city: cityData
+        };
+        console.log(place);
+        
+        console.log('Sending place data:', place);
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json'
+        });
+        
+        this.http.post(this.postURL, place, { headers }).subscribe({
+          next: (response) => console.log('Place added successfully:', response),
+          error: (error) => console.error('Error adding place:', error)
+        }
+      );
+        form.reset();
+      this.success = "Successfully Updated";
+      console.log(this.success);
+        
+  }
+
+
 
   deleteUser(name: String) {
     //throw new Error('Method not implemented.');
     console.log(name);
     this.http.delete(`${this.deleteURL}?name=${name}`).subscribe(
       response => {
-        console.log("User deleted successfully", response);
+        console.log("Place deleted successfully", response);
         this.places = this.places.filter(place => place.name !== name); // Update UI
         this.sortedPlaces = [...this.places];
-        
+
       },
       error => {
-        console.error("Error deleting user:", error);
+        console.error("Error deleting place:", error);
       }
-    );;
-    }
+    );
+  }
+
+
 }
