@@ -11,11 +11,15 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./all-places.component.scss']
 })
 export class AllPlacesComponent {
+  setEditPlace(_t18: any) {
+    throw new Error('Method not implemented.');
+  }
 
 
 
   url = "http://localhost:8080/famous_places";
   deleteURL = "http://localhost:8080/place";
+  fetchURL = "http://localhost:8080/place";
   updateURL = "http://localhost:8080/place";
   cityURL = "http://localhost:8080/city";
   postURL = "http://localhost:8080/add-place";
@@ -72,7 +76,7 @@ export class AllPlacesComponent {
 
   fetchPlace(name: String) {
 
-    this.http.get(`${this.updateURL}?name=${name}`).subscribe(
+    this.http.get(`${this.fetchURL}?name=${name}`).subscribe(
       response => {
 
         // this.famousPlace = { ...response };
@@ -90,37 +94,42 @@ export class AllPlacesComponent {
 
   }
 
-  
+  // updateURL = "http://localhost:8080/place/${famousPlace.placeId}";
 
-  async updatePlace(form: NgForm) {
-     let formData = form.value;
-     console.log(this.cityName);
-        const cityData = await firstValueFrom(this.http.get(`${this.cityURL}?name=${this.cityName}`));
-        console.log(cityData);
-    
-        const place = {
-          name: formData.title,
-          image: formData.image,
-          location: formData.location,
-          history: formData.message,
-          city: cityData
-        };
-        console.log(place);
-        
-        console.log('Sending place data:', place);
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/json'
-        });
-        
-        this.http.post(this.postURL, place, { headers }).subscribe({
-          next: (response) => console.log('Place added successfully:', response),
-          error: (error) => console.error('Error adding place:', error)
-        }
-      );
-        form.reset();
-      this.success = "Successfully Updated";
-      console.log(this.success);
-        
+
+
+  async updatePlace(placeId: number, form: NgForm) {
+
+    let formData = form.value;
+
+    console.log(placeId);
+    console.log(this.cityName);
+    const cityData = await firstValueFrom(this.http.get(`${this.cityURL}?name=${this.cityName}`));
+    console.log(cityData);
+
+    const place = {
+      name: formData.title,
+      image: formData.image,
+      location: formData.location,
+      history: formData.message,
+      city: cityData
+    };
+    console.log(place.name);
+
+
+    console.log('Sending place data:', place);
+
+
+    this.http.put(`${this.updateURL}/${placeId}`, place).subscribe(response => {
+      console.log(response);
+     
+      
+    }
+    );
+    form.reset();
+    this.success = "Successfully Updated";
+    console.log(this.success);
+
   }
 
 

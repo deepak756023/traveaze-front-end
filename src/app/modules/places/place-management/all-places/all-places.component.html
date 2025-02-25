@@ -37,88 +37,69 @@
 
 
               <div class="col">
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                  data-bs-whatever="@mdo" (click)="fetchPlace(place.name)"><i class="fa fa-edit"></i> Edit</button>
-              </div>
-
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Update Place</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    
-
-                    <div class="modal-body">
-
-                      <form #f="ngForm" (ngSubmit)="updatePlace(f)">
-
-                        <!-- Title Field -->
-                        <div class="mb-3">
-                          <label for="title" class="form-label">Title</label>
-                          <input [(ngModel)]="famousPlace.name" name="title" #title="ngModel" type="text"
-                            class="form-control" id="title" required>
-                          <div class="alert alert-danger" *ngIf="title.touched && !title.valid">Please enter a title.
+                <!-- Button to trigger modal -->
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#myModal' + place.placeId"
+                  (click)="fetchPlace(place.name)">
+                  <i class="fa fa-edit"></i> Edit
+                </button>
+              
+                <!-- Unique Modal for each place -->
+                <div class="modal fade" [id]="'myModal' + place.placeId" tabindex="-1" 
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+              
+                      <div class="modal-header">
+                        <h5 class="modal-title">Update Place - {{ place.name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+              
+                      <div class="modal-body">
+                        <form #f="ngForm">
+                          <!-- Title Field -->
+                          <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input [(ngModel)]="famousPlace.name" name="title" #title="ngModel" type="text"
+                              class="form-control" required>
                           </div>
-                        </div>
-
-
-            
-
-                        <!-- Location Field -->
-                        <div class="mb-3">
-                          <label for="location" class="form-label">Location</label>
-                          <input [(ngModel)]="famousPlace.location" name="location" #location="ngModel" type="text"
-                            class="form-control" id="location" required>
-                          <div class="alert alert-danger" *ngIf="location.touched && !location.valid">
-                            Please enter a location.
+              
+                          <!-- Location Field -->
+                          <div class="mb-3">
+                            <label class="form-label">Location</label>
+                            <input [(ngModel)]="famousPlace.location" name="location" #location="ngModel" type="text"
+                              class="form-control" required>
                           </div>
-                        </div>
-
-
-
-
-
-                        <!-- Message Field -->
-                        <div class="mb-3">
-                          <label for="message" class="form-label">Details</label>
-                          <textarea [(ngModel)]="famousPlace.history" name="message" #message="ngModel"
-                            class="form-control" id="message" rows="3" required></textarea>
-                          <div class="alert alert-danger" *ngIf="message.touched && !message.valid">Please write
-                            details</div>
-                        </div>
-
-
-
-                        <!-- Image Upload -->
-                        <div class="mb-3">
-                          <label for="image" class="form-label">Image</label>
-                          <input [(ngModel)]="famousPlace.image" name="image" #image="ngModel" type="text"
-                            class="form-control" id="image" required>
-                          <div class="alert alert-danger" *ngIf="image.touched && !image.valid">Please enter image(as
-                            a string).</div>
-
-                            
-                        </div>
-                      
-                        <button type="button" class="btn btn-primary w-100 mt-3" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary w-100 mt-3">Submit</button>
-
-                        
-
-                      </form>
+              
+                          <!-- Message Field -->
+                          <div class="mb-3">
+                            <label class="form-label">Details</label>
+                            <textarea [(ngModel)]="famousPlace.history" name="message" #message="ngModel"
+                              class="form-control" rows="3" required></textarea>
+                          </div>
+              
+                          <!-- Image Upload -->
+                          <div class="mb-3">
+                            <label class="form-label">Image</label>
+                            <input [(ngModel)]="famousPlace.image" name="image" #image="ngModel" type="text"
+                              class="form-control" required>
+                          </div>
+              
+                          <button type="button" class="btn btn-secondary w-100 mt-3" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary w-100 mt-3" (click)="updatePlace(place.placeId, f)">Submit</button>
+                        </form>
+                      </div>
+              
                     </div>
-
-                    
                   </div>
                 </div>
               </div>
+              
 
               
-            
+
+
+
 
 
 
@@ -127,37 +108,43 @@
 
 
               <div class="col">
-                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#myModal"><i
-                    class="fa fa-trash"></i>
-                  Delete</button>
-              </div>
-
-              <!-- The Modal -->
-              <div class="modal" id="myModal">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                      <h4 class="modal-title">For Confirmation</h4>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#myModal1' + place.placeId">
+                  <i class="fa fa-trash"></i> Delete
+                </button>
+              
+                <!-- The Modal (Unique for Each Row) -->
+                <div class="modal fade" [id]="'myModal1' + place.placeId" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+              
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">For Confirmation</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+              
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        Do you really want to delete <strong>{{ place.name }}</strong>?
+                      </div>
+              
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Back</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                          (click)="deleteUser(place.name); $event.preventDefault();">
+                          Delete
+                        </button>
+                      </div>
+              
                     </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                      Do you really want to delete the place...
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Back</button>
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                        (click)="deleteUser(place.name)">Delete</button>
-                    </div>
-
                   </div>
                 </div>
               </div>
+              
+
+
+
 
 
 
